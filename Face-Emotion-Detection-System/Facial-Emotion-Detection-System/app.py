@@ -43,6 +43,12 @@ def run_detection(cv_image: np.ndarray):
                 "box": [float(x1), float(y1), float(x2), float(y2)],
             })
 
+    detections.append({
+                "label": model.names.get(cls, str(cls)),
+                "confidence": float(conf),
+                "box": [float(x1), float(y1),float(Z1), float(x2), float(y2), float(Z2)],
+            })
+
     annotated = r.plot() if hasattr(r, "plot") else cv_image
     if annotated is None:
         annotated = cv_image
